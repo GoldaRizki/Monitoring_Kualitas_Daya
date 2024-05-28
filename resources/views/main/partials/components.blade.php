@@ -127,6 +127,11 @@ chart.render();
 }
 
 
+function tulisLabel(id_elemen, nilai, satuan = "") {
+    document.getElementById(id_elemen).innerHTML = nilai + " " + satuan;
+}
+
+
 
 var chart_tegangan = buatChart(document.getElementById('chart_tegangan'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
@@ -199,7 +204,7 @@ buatChart(document.getElementById('chart_daya_semu'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-teal'), 
     {
-        name: 'Frekuensi',
+        name: 'Daya Semu',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -210,7 +215,7 @@ buatChart(document.getElementById('chart_total_daya_aktif'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
     {
-        name: 'Frekuensi',
+        name: 'Total Daya Aktif',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -221,7 +226,7 @@ buatChart(document.getElementById('chart_total_daya_reaktif'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
     {
-        name: 'Frekuensi',
+        name: 'Total Daya Reaktif',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -230,9 +235,9 @@ buatChart(document.getElementById('chart_total_daya_reaktif'),
 buatChart(document.getElementById('chart_total_daya_semu'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
-    KTUtil.getCssVariableValue('--bs-teal'), 
+    KTUtil.getCssVariableValue('--bs-danger'), 
     {
-        name: 'Frekuensi',
+        name: 'Total Daya Semu',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -243,7 +248,7 @@ buatChart(document.getElementById('chart_total_faktor_daya'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-warning'), 
     {
-        name: 'Frekuensi',
+        name: 'Total Faktor Daya',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -254,7 +259,7 @@ buatChart(document.getElementById('daya_aktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
     {
-        name: 'Frekuensi',
+        name: 'Apparent Power Demand',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
@@ -265,15 +270,17 @@ buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
     {
-        name: 'Frekuensi',
+        name: 'Reactive Power Demand',
         data: [380, 385, 386, 384.6, 398.4, 385.2, 380.7]
     }, 
     ['Feb 23 08:56', 'Feb 23 08:57', 'Feb 23 08:58', 'Feb 23 08:59', 'Feb 23 09:00', 'Feb 23 09:01', 'Feb 23 09:02']
 );
 
-//    x:[387, 384, 386.2, 382.6, 390.5, 375.2, 378.7],
-        //    y:['Feb 23 09:03', 'Feb 23 09:04', 'Feb 23 09:05', 'Feb 23 09:06', 'Feb 23 09:07', 'Feb 23 09:08', 'Feb 23 09:09']
-        
+
+
+
+
+
 setTimeout(() => {
     chart_tegangan.updateSeries([{
         data:[{
@@ -300,7 +307,30 @@ setTimeout(() => {
         },
     ]
     }]);
+
+tulisLabel("label_tegangan", 384.2, "V");
+tulisLabel("label_arus", 58, "A");
+tulisLabel("label_faktor_daya", 0.87);
+tulisLabel("label_frekuensi", 55, "Hz");
+tulisLabel("label_daya_aktif", 90, "W");
+tulisLabel("label_daya_reaktif", 70, "W");
+tulisLabel("label_daya_semu", 69.2, "VA");
+tulisLabel("label_total_daya_aktif", 85.6, "W");
+tulisLabel("label_total_daya_reaktif", 65.4, "W");
+tulisLabel("label_total_daya_semu", 598.2 , "VA");
+tulisLabel("label_total_faktor_daya", 0.97);
+tulisLabel("label_reactive_power_demand", 896.5, "W");
+tulisLabel("label_active_power_demand", 56.5, "W");
+
+
+
+
+
 }, 6000);
+
+
+
+
 
 
 </script>
