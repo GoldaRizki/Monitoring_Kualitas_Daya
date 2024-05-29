@@ -17,7 +17,7 @@ class Data extends Model
     public function getWaktuAttribute(){
 
         $wkt = Carbon::parse($this->created_at)->locale('id');
-        return "{$wkt->shortMonthName}' {$wkt->day} {$wkt->hour}:{$wkt->minute}:{$wkt->second}";
+        return "{$wkt->shortMonthName} {$wkt->day} {$wkt->hour}:{$wkt->minute}:{$wkt->second}";
 
     }
 }

@@ -129,6 +129,7 @@
 		<script src="{{ url('/assets/js/custom/modals/upgrade-plan.js') }}"></script>
 		<!--end::Page Custom Javascript-->
 
+		@include('main.partials.init')
 		@include('main.partials.components')
 
 		<!--end::Javascript-->
