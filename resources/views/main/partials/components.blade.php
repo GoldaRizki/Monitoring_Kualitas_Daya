@@ -179,7 +179,7 @@ let chart_total_faktor_daya = buatChart(document.getElementById('chart_total_fak
     waktu_awal
 );
 
-let chart_daya_aktif_yang_diminta = buatChart(document.getElementById('chart_daya_aktif_yang_diminta'),
+let chart_daya_aktif_yang_diminta = buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
@@ -195,7 +195,7 @@ let chart_daya_aktif_yang_diminta = buatChart(document.getElementById('chart_day
     'W'
 );
 
-let chart_daya_reaktif_yang_diminta = buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
+let chart_daya_reaktif_yang_diminta = buatChart(document.getElementById('chart_daya_aktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
@@ -213,37 +213,6 @@ let chart_daya_reaktif_yang_diminta = buatChart(document.getElementById('chart_d
 
 
 
-
-/*
-setTimeout(() => {
-    chart_tegangan.updateSeries([{
-        data:[{
-            x : 'Feb 23 09:04',
-            y : 385
-        },{
-            x : 'Feb 23 09:05',
-            y : 386
-        },{
-            x : 'Feb 23 09:06',
-            y : 384.6
-        },{
-            x : 'Feb 23 09:07',
-            y : 398.4
-        },{
-            x : 'Feb 23 09:08',
-            y : 385.2
-        },{
-            x : 'Feb 23 09:09',
-            y : 380.7
-        },{
-            x : 'Feb 23 09:10',
-            y : 398.2
-        },
-    ]
-    }]);
-*/
-
-
 setInterval(() => {
     fetch('/api/minta_data', { 
     method: "POST",
@@ -255,25 +224,38 @@ setInterval(() => {
         return respon.json()
     }).then((hasil) => {
         
+        console.log(hasil);
    
         chart_tegangan.updateSeries([{'data': hasil.tegangan}]);
         chart_arus.updateSeries([{'data': hasil.arus}]);
         chart_faktor_daya.updateSeries([{'data': hasil.faktor_daya}]);
         chart_frekuensi.updateSeries([{'data': hasil.frekuensi}]);
+        chart_daya_aktif.updateSeries([{'data': hasil.daya_aktif}]);
+        chart_daya_reaktif.updateSeries([{'data': hasil.daya_reaktif}]);
+        chart_daya_semu.updateSeries([{'data': hasil.daya_semu}]);
+        chart_total_daya_aktif.updateSeries([{'data': hasil.total_daya_aktif}]);
+        chart_total_daya_reaktif.updateSeries([{'data': hasil.total_daya_reaktif}]);
+        chart_total_daya_semu.updateSeries([{'data': hasil.total_daya_semu}]);
+        chart_total_faktor_daya.updateSeries([{'data': hasil.total_faktor_daya}]);
+        chart_daya_aktif_yang_diminta.updateSeries([{'data': hasil.apparent_power_demand}]);
+        chart_daya_reaktif_yang_diminta.updateSeries([{'data': hasil.reactive_power_demand}]);
 
-        tulisLabel("label_tegangan", 384.2, "V");
-        tulisLabel("label_arus", 58, "A");
-        tulisLabel("label_faktor_daya", 0.87);
-        tulisLabel("label_frekuensi", 55, "Hz");
-        tulisLabel("label_daya_aktif", 90, "W");
-        tulisLabel("label_daya_reaktif", 70, "VAr");
-        tulisLabel("label_daya_semu", 69.2, "VA");
-        tulisLabel("label_total_daya_aktif", 85.6, "W");
-        tulisLabel("label_total_daya_reaktif", 65.4, "VAr");
-        tulisLabel("label_total_daya_semu", 598.2 , "VA");
-        tulisLabel("label_total_faktor_daya", 0.97);
-        tulisLabel("label_reactive_power_demand", 896.5, "VAr");
-        tulisLabel("label_active_power_demand", 56.5, "W");
+    
+        tulisLabel("label_tegangan", hasil.tegangan[9].y, "V");
+        tulisLabel("label_arus", hasil.arus[9].y, "A");
+        tulisLabel("label_faktor_daya", hasil.faktor_daya[9].y);
+        tulisLabel("label_frekuensi", hasil.frekuensi[9].y, "Hz");
+        tulisLabel("label_daya_aktif", hasil.daya_aktif[9].y, "W");
+        tulisLabel("label_daya_reaktif", hasil.daya_reaktif[9].y, "VAr");
+        tulisLabel("label_daya_semu", hasil.daya_semu[9].y, "VA");
+        tulisLabel("label_total_daya_aktif", hasil.total_daya_aktif[9].y, "W");
+        tulisLabel("label_total_daya_reaktif", hasil.total_daya_reaktif[9].y, "VAr");
+        tulisLabel("label_total_daya_semu", hasil.total_daya_semu[9].y, "VA");
+        tulisLabel("label_total_faktor_daya", hasil.total_faktor_daya[9].y);
+        tulisLabel("label_reactive_power_demand", hasil.reactive_power_demand[9].y, "VAr");
+        tulisLabel("label_active_power_demand", hasil.apparent_power_demand[9].y, "W");
+
+
 
     });
 
@@ -281,23 +263,8 @@ setInterval(() => {
 }, 7000);
 
 
-tulisLabel("label_tegangan", 384.2, "V");
-tulisLabel("label_arus", 58, "A");
-tulisLabel("label_faktor_daya", 0.87);
-tulisLabel("label_frekuensi", 55, "Hz");
-tulisLabel("label_daya_aktif", 90, "W");
-tulisLabel("label_daya_reaktif", 70, "VAr");
-tulisLabel("label_daya_semu", 69.2, "VA");
-tulisLabel("label_total_daya_aktif", 85.6, "W");
-tulisLabel("label_total_daya_reaktif", 65.4, "VAr");
-tulisLabel("label_total_daya_semu", 598.2 , "VA");
-tulisLabel("label_total_faktor_daya", 0.97);
-tulisLabel("label_reactive_power_demand", 896.5, "VAr");
-tulisLabel("label_active_power_demand", 56.5, "W");
 
-/*
-}, 6000);
-*/
+
 
 
 

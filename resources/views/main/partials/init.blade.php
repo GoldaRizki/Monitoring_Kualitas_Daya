@@ -4,7 +4,7 @@
     let height = parseInt(KTUtil.css(element, 'height'));
     let options = {
     series: [sumbu_x],
-    chart: {
+    chart: { 
         fontFamily: 'inherit',
         type: 'area',
         height: height,
