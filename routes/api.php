@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/si_paling_skripsi', [ApiAlatController::class, 'create']);
+Route::post('/minta_data', [ApiAlatController::class, 'getData']);

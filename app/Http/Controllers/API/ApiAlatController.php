@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Data;
 use Illuminate\Http\Request;
+use App\Http\Resources\MonitoringCollection;
 
 class ApiAlatController extends Controller
 {
@@ -30,6 +31,15 @@ class ApiAlatController extends Controller
 
         Data::create($data_valid);
 
-        return response()->json('ok', 200); //respond code 200 
+        return response()->json('y', 200); //respond code 200 
+    }
+
+    public function getData(){
+        
+        $data = Data::latest()->limit(10)->get()->reverse();
+
+        //ddd($data->pluck('faktor_daya'));
+        return new MonitoringCollection($data);
+
     }
 }

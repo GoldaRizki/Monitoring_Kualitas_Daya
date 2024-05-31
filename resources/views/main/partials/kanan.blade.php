@@ -130,7 +130,7 @@
     	<div class="card-header border-0 py-5">
     		<h3 class="card-title align-items-start flex-column">
     			<span class="card-label fw-bolder fs-3 mb-1">Daya Semu</span>
-    			<span class="text-muted fw-bold fs-7">PPP</span>
+    			<span class="text-muted fw-bold fs-7">Apparent Power</span>
     		</h3>
     
     	</div>
@@ -151,7 +151,7 @@
     	<div class="card-header border-0 py-5">
     		<h3 class="card-title align-items-start flex-column">
     			<span class="card-label fw-bolder fs-3 mb-1">Total Daya Aktif</span>
-    			<span class="text-muted fw-bold fs-7">Active Power Total</span>
+    			<span class="text-muted fw-bold fs-7">Total Active Power</span>
     		</h3>
     
     	</div>
@@ -172,7 +172,7 @@
     	<div class="card-header border-0 py-5">
     		<h3 class="card-title align-items-start flex-column">
     			<span class="card-label fw-bolder fs-3 mb-1">Total Daya Reaktif</span>
-    			<span class="text-muted fw-bold fs-7">Reactive Power Total</span>
+    			<span class="text-muted fw-bold fs-7">Total Reactive Power</span>
     		</h3>
     
     	</div>
@@ -193,7 +193,7 @@
     	<div class="card-header border-0 py-5">
     		<h3 class="card-title align-items-start flex-column">
     			<span class="card-label fw-bolder fs-3 mb-1">Total Daya Semu</span>
-    			<span class="text-muted fw-bold fs-7">ppp</span>
+    			<span class="text-muted fw-bold fs-7">Total Apparent Power</span>
     		</h3>
     
     	</div>
@@ -243,7 +243,7 @@
     	<!--begin::Body-->
     	<div class="card-body d-flex flex-column">
     		<!--begin::Chart-->
-    		<div id="daya_aktif_yang_diminta" style="height: 350px;"></div>
+    		<div id="chart_daya_aktif_yang_diminta" style="height: 350px;"></div>
     		<!--end::Chart-->
     	</div>
     	<!--end::Body-->

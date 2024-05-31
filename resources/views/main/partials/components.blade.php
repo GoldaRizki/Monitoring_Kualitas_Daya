@@ -23,7 +23,7 @@ let chart_tegangan = buatChart(document.getElementById('chart_tegangan'),
     'V'
 );
 
-buatChart(document.getElementById('chart_arus'),
+let chart_arus = buatChart(document.getElementById('chart_arus'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-danger'), 
@@ -38,7 +38,7 @@ buatChart(document.getElementById('chart_arus'),
     'A'
 );
 
-buatChart(document.getElementById('chart_faktor_daya'),
+let chart_faktor_daya = buatChart(document.getElementById('chart_faktor_daya'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
@@ -53,7 +53,7 @@ buatChart(document.getElementById('chart_faktor_daya'),
     waktu_awal
 );
 
-buatChart(document.getElementById('chart_frekuensi'),
+let chart_frekuensi = buatChart(document.getElementById('chart_frekuensi'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-primary'), 
@@ -69,7 +69,7 @@ buatChart(document.getElementById('chart_frekuensi'),
     'Hz'
 );
 
-buatChart(document.getElementById('chart_daya_aktif'),
+let chart_daya_aktif = buatChart(document.getElementById('chart_daya_aktif'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
@@ -85,7 +85,7 @@ buatChart(document.getElementById('chart_daya_aktif'),
     'W'
 );
 
-buatChart(document.getElementById('chart_daya_reaktif'),
+let chart_daya_reaktif = buatChart(document.getElementById('chart_daya_reaktif'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
@@ -98,10 +98,10 @@ buatChart(document.getElementById('chart_daya_reaktif'),
         ]
     }, 
     waktu_awal,
-    'W'
+    'VAr'
 );
 
-buatChart(document.getElementById('chart_daya_semu'),
+let chart_daya_semu = buatChart(document.getElementById('chart_daya_semu'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-teal'), 
@@ -117,7 +117,7 @@ buatChart(document.getElementById('chart_daya_semu'),
     'VA'
 );
 
-buatChart(document.getElementById('chart_total_daya_aktif'),
+let chart_total_daya_aktif = buatChart(document.getElementById('chart_total_daya_aktif'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
@@ -133,7 +133,7 @@ buatChart(document.getElementById('chart_total_daya_aktif'),
     'W'
 );
 
-buatChart(document.getElementById('chart_total_daya_reaktif'),
+let chart_total_daya_reaktif = buatChart(document.getElementById('chart_total_daya_reaktif'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
@@ -146,9 +146,9 @@ buatChart(document.getElementById('chart_total_daya_reaktif'),
         ]
     }, 
     waktu_awal,
-    'W'
+    'VAr'
 );
-buatChart(document.getElementById('chart_total_daya_semu'),
+let chart_total_daya_semu = buatChart(document.getElementById('chart_total_daya_semu'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-danger'), 
@@ -164,7 +164,7 @@ buatChart(document.getElementById('chart_total_daya_semu'),
     'VA'
 );
 
-buatChart(document.getElementById('chart_total_faktor_daya'),
+let chart_total_faktor_daya = buatChart(document.getElementById('chart_total_faktor_daya'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-warning'), 
@@ -179,7 +179,7 @@ buatChart(document.getElementById('chart_total_faktor_daya'),
     waktu_awal
 );
 
-buatChart(document.getElementById('daya_aktif_yang_diminta'),
+let chart_daya_aktif_yang_diminta = buatChart(document.getElementById('chart_daya_aktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-orange'), 
@@ -195,7 +195,7 @@ buatChart(document.getElementById('daya_aktif_yang_diminta'),
     'W'
 );
 
-buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
+let chart_daya_reaktif_yang_diminta = buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
     KTUtil.getCssVariableValue('--bs-gray-500'),
     KTUtil.getCssVariableValue('--bs-gray-200'), 
     KTUtil.getCssVariableValue('--bs-success'), 
@@ -207,14 +207,14 @@ buatChart(document.getElementById('chart_daya_reaktif_yang_diminta'),
             @endforeach]
     }, 
     waktu_awal,
-    'W'
+    'VAr'
 );
 
 
 
 
 
-
+/*
 setTimeout(() => {
     chart_tegangan.updateSeries([{
         data:[{
@@ -241,23 +241,63 @@ setTimeout(() => {
         },
     ]
     }]);
+*/
+
+
+setInterval(() => {
+    fetch('/api/minta_data', { 
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    }).then((respon) => {
+        return respon.json()
+    }).then((hasil) => {
+        
+   
+        chart_tegangan.updateSeries([{'data': hasil.tegangan}]);
+        chart_arus.updateSeries([{'data': hasil.arus}]);
+        chart_faktor_daya.updateSeries([{'data': hasil.faktor_daya}]);
+        chart_frekuensi.updateSeries([{'data': hasil.frekuensi}]);
+
+        tulisLabel("label_tegangan", 384.2, "V");
+        tulisLabel("label_arus", 58, "A");
+        tulisLabel("label_faktor_daya", 0.87);
+        tulisLabel("label_frekuensi", 55, "Hz");
+        tulisLabel("label_daya_aktif", 90, "W");
+        tulisLabel("label_daya_reaktif", 70, "VAr");
+        tulisLabel("label_daya_semu", 69.2, "VA");
+        tulisLabel("label_total_daya_aktif", 85.6, "W");
+        tulisLabel("label_total_daya_reaktif", 65.4, "VAr");
+        tulisLabel("label_total_daya_semu", 598.2 , "VA");
+        tulisLabel("label_total_faktor_daya", 0.97);
+        tulisLabel("label_reactive_power_demand", 896.5, "VAr");
+        tulisLabel("label_active_power_demand", 56.5, "W");
+
+    });
+
+    
+}, 7000);
+
 
 tulisLabel("label_tegangan", 384.2, "V");
 tulisLabel("label_arus", 58, "A");
 tulisLabel("label_faktor_daya", 0.87);
 tulisLabel("label_frekuensi", 55, "Hz");
 tulisLabel("label_daya_aktif", 90, "W");
-tulisLabel("label_daya_reaktif", 70, "W");
+tulisLabel("label_daya_reaktif", 70, "VAr");
 tulisLabel("label_daya_semu", 69.2, "VA");
 tulisLabel("label_total_daya_aktif", 85.6, "W");
-tulisLabel("label_total_daya_reaktif", 65.4, "W");
+tulisLabel("label_total_daya_reaktif", 65.4, "VAr");
 tulisLabel("label_total_daya_semu", 598.2 , "VA");
 tulisLabel("label_total_faktor_daya", 0.97);
-tulisLabel("label_reactive_power_demand", 896.5, "W");
+tulisLabel("label_reactive_power_demand", 896.5, "VAr");
 tulisLabel("label_active_power_demand", 56.5, "W");
 
+/*
 }, 6000);
-
+*/
 
 
 

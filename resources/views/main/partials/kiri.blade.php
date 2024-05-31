@@ -160,7 +160,7 @@
 							</div>
 							<!--end::Section-->
 							<!--begin::Label-->
-							<div id="label_daya_reaktif" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->daya_reaktif }} W</div>
+							<div id="label_daya_reaktif" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->daya_reaktif }} VAr</div>
 							<!--end::Label-->
 						</div>
 						<!--end::Item-->
@@ -202,7 +202,7 @@
 								<!--begin::Title-->
 								<div>
 									<a href="#" class="fs-7 text-gray-800 text-hover-primary fw-bolder">Total Daya Aktif</a>
-									<div class="fs-9 text-muted fw-bold mt-1">p</div>
+									<div class="fs-9 text-muted fw-bold mt-1">Total Active Power</div>
 								</div>
 								<!--end::Title-->
 							</div>
@@ -227,13 +227,13 @@
 								<!--begin::Title-->
 								<div>
 									<a href="#" class="fs-7 text-gray-800 text-hover-primary fw-bolder">Total Daya Reaktif</a>
-									<div class="fs-9 text-muted fw-bold mt-1">P</div>
+									<div class="fs-9 text-muted fw-bold mt-1">Total Reactive Power</div>
 								</div>
 								<!--end::Title-->
 							</div>
 							<!--end::Section-->
 							<!--begin::Label-->
-							<div id="label_total_daya_reaktif" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->total_daya_reaktif }} W</div>
+							<div id="label_total_daya_reaktif" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->total_daya_reaktif }} VAr</div>
 							<!--end::Label-->
 						</div>
 						<!--end::Item-->
@@ -251,7 +251,7 @@
 								<!--begin::Title-->
 								<div>
 									<a href="#" class="fs-7 text-gray-800 text-hover-primary fw-bolder">Total Daya Semu</a>
-									<div class="fs-9 text-muted fw-bold mt-1">P</div>
+									<div class="fs-9 text-muted fw-bold mt-1">Total Apparent Power</div>
 								</div>
 								<!--end::Title-->
 							</div>
@@ -275,7 +275,7 @@
 								<!--begin::Title-->
 								<div>
 									<a href="#" class="fs-7 text-gray-800 text-hover-primary fw-bolder">Total Faktor Daya</a>
-									<div class="fs-9 text-muted fw-bold mt-1">P</div>
+									<div class="fs-9 text-muted fw-bold mt-1">Total Power Factor</div>
 								</div>
 								<!--end::Title-->
 							</div>
@@ -305,7 +305,7 @@
 							</div>
 							<!--end::Section-->
 							<!--begin::Label-->
-							<div id="label_reactive_power_demand" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->reactive_power_demand }} W</div>
+							<div id="label_reactive_power_demand" class="badge fs-7 badge-secondary fw-bold py-3 px-3">{{ $data_terakhir->reactive_power_demand }} VAr</div>
 							<!--end::Label-->
 						</div>
 						<!--end::Item-->
